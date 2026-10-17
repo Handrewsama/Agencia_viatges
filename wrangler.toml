@@ -1,0 +1,3 @@
+name = "agencia-viatges-api"
+main = "serpapi_worker.js"
+compatibility_date = "2026-10-17"
