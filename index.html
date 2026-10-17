@@ -1,83 +1,134 @@
 <!doctype html>
-<html lang="ca">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Assistent de visites comercials</title>
+<html lang="ca"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assistent de visites comercials v3</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#172033;background:#f4f6fa;--navy:#13243a;--blue:#2365d8;--muted:#65748a;--line:#dce3ed;--white:#fff}
-*{box-sizing:border-box}body{margin:0}header{background:linear-gradient(125deg,#10233b,#1e4974);color:white;padding:30px 20px 58px}header .inner,main{max-width:1040px;margin:auto}header .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.14em;opacity:.8;font-weight:700}h1{font-size:clamp(27px,4vw,39px);line-height:1.1;margin:10px 0}header p{margin:0;color:#dce8f7;max-width:680px;line-height:1.5}main{padding:0 18px 50px;margin-top:-34px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 12px 35px #142b4610}.formgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}.field label{display:block;font-size:12px;font-weight:750;color:#45566e;margin:0 0 7px}.field input,.field select{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:12px 11px;font:inherit;color:#172033;background:white;min-height:45px}.field input:focus,.field select:focus{outline:3px solid #2365d822;border-color:#2365d8}.actions{display:flex;gap:10px;align-items:center;margin-top:17px;flex-wrap:wrap}.btn{border:0;border-radius:10px;padding:12px 17px;font:inherit;font-weight:750;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}.primary{background:var(--blue);color:white}.secondary{background:#edf2f8;color:#20344d}.small{font-size:12px;color:var(--muted);line-height:1.5}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:26px 2px 12px}.sectionhead h2{font-size:20px;margin:0}.sectionhead p{font-size:12px;color:var(--muted);margin:4px 0 0}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;display:flex;gap:13px;align-items:flex-start;min-width:0}.ico{width:43px;height:43px;border-radius:12px;background:#eaf1ff;display:grid;place-items:center;font-size:22px;flex-shrink:0}.card h3{font-size:16px;margin:1px 0 6px}.card p{font-size:13px;color:#5f6e82;line-height:1.5;margin:0 0 12px}.links{display:flex;gap:8px;flex-wrap:wrap}.links a{color:#1e5bc1;font-size:12px;font-weight:750;text-decoration:none;background:#eff5ff;padding:8px 10px;border-radius:8px}.links a:hover{background:#dceaff}.notice{margin-top:16px;padding:13px 15px;background:#fff8e7;border:1px solid #f1dfad;border-radius:12px;color:#76551a;font-size:12px;line-height:1.5}.results{display:none}.results.show{display:block}.pill{font-size:11px;border-radius:20px;padding:5px 9px;background:#e9f8ef;color:#21643c;font-weight:800}.footer{font-size:11px;color:#7a8798;text-align:center;margin:24px 0 0}.route-summary{background:#edf4ff;border-radius:12px;padding:13px 15px;margin-top:14px;color:#27456f;font-size:13px;line-height:1.5;display:none}.route-summary.show{display:block}
-@media(max-width:700px){.formgrid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}header{padding-top:24px}.panel{padding:17px}.sectionhead{align-items:start;flex-direction:column}}
-</style>
-</head>
-<body>
-<header><div class="inner"><div class="eyebrow">Eina privada · versió inicial</div><h1>Assistent de visites comercials</h1><p>Introdueix el nom del client o l'adreça de la fàbrica i concentra en una sola pantalla les cerques de transport, allotjament, restaurants i mapa.</p></div></header>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#172033;background:#f3f6fb}*{box-sizing:border-box}body{margin:0}header{background:linear-gradient(120deg,#12243b,#235789);color:white;padding:28px 18px}header,main{padding-left:max(18px,calc((100% - 1050px)/2));padding-right:max(18px,calc((100% - 1050px)/2))}h1{margin:0 0 8px;font-size:clamp(26px,4vw,38px)}header p{margin:0;color:#e1ebf7}main{padding-top:18px;padding-bottom:40px}.panel,.card{background:#fff;border:1px solid #dce4ee;border-radius:16px;padding:18px;margin-bottom:14px}.grid,.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:12px;font-weight:700;margin:0 0 6px;color:#4b5c72}.field input,.field select,.engine-row input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;background:white}.btn{border:0;border-radius:9px;padding:11px 15px;font:inherit;font-weight:700;cursor:pointer}.primary{background:#2365d8;color:white}.secondary{background:#eaf0f7;color:#243950}.actions,.tabs,.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.tab,.links a{border-radius:8px;padding:9px 11px;text-decoration:none;font-size:13px;font-weight:700;border:1px solid #dce4ee;color:#2456a0;background:#f0f5ff}.tab.active{background:#2365d8;color:#fff}.cards{margin-top:14px}.card{display:flex;gap:12px;margin:0}.ico{font-size:24px}.card h3{font-size:16px;margin:0 0 6px}.card p,.small{font-size:12px;color:#627187;line-height:1.5}.notice{background:#fff7e6;border:1px solid #f1dfad;border-radius:12px;padding:12px;font-size:12px;line-height:1.5;margin-top:14px}.engine-row{display:grid;grid-template-columns:1fr 2fr auto;gap:8px;margin:10px 0}.engine-row button{align-self:start}.hidden{display:none}.weather{font-size:13px;background:#eef5ff;padding:10px;border-radius:9px;margin-top:10px;line-height:1.5}@media(max-width:650px){.grid,.cards{grid-template-columns:1fr}.engine-row{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>Assistent de visites comercials</h1><p>Una sola fitxa per preparar transports, hotel, cotxe i meteorologia de la visita.</p></header>
 <main>
-<section class="panel" aria-label="Dades de la visita">
-<div class="formgrid">
- <div class="field"><label for="client">Nom de la fàbrica o adreça del client *</label><input id="client" placeholder="Ex. nom de l'empresa, municipi o adreça" autocomplete="street-address" required></div>
- <div class="field"><label for="origin">Origen del viatge</label><input id="origin" value="Badalona, Barcelona" placeholder="Població de sortida"></div>
- <div class="field"><label for="date">Data de la visita</label><input id="date" type="date"></div>
- <div class="field"><label for="time">Hora de la reunió</label><input id="time" type="time" value="10:00"></div>
- <div class="field"><label for="nights">Nits d'hotel</label><select id="nights"><option value="0">No necessito hotel</option><option value="1" selected>1 nit</option><option value="2">2 nits</option><option value="3">3 nits</option></select></div>
- <div class="field"><label for="transport">Transport preferit</label><select id="transport"><option value="all">Comparar opcions</option><option value="car">Cotxe</option><option value="public">Transport públic</option></select></div>
-</div>
-<div class="actions"><button class="btn primary" id="search">🔎 Preparar la visita</button><button class="btn secondary" id="clear" type="button">Netejar</button><span class="small">No cal conèixer l'adreça exacta abans de començar.</span></div>
-<div class="route-summary" id="summary"></div>
-</section>
-<section class="results" id="results">
- <div class="sectionhead"><div><h2>La teva fitxa de viatge</h2><p id="subtitle"></p></div><span class="pill">Cerques preparades</span></div>
- <div class="cards">
-  <article class="card"><div class="ico">🏭</div><div><h3>1. Identificar la fàbrica</h3><p>Comprova que el resultat sigui la planta correcta. Si l'empresa té diverses fàbriques, selecciona la ubicació exacta abans de reservar.</p><div class="links"><a id="factoryMap" target="_blank" rel="noopener">Cercar a Maps ↗</a><a id="factoryWeb" target="_blank" rel="noopener">Cercar a la web ↗</a></div></div></article>
-  <article class="card"><div class="ico">🚆</div><div><h3>2. Transport i trajectes</h3><p>Compara el trajecte des de l'origen. Les tarifes i sortides s'han de confirmar al proveïdor abans de viatjar.</p><div class="links"><a id="directions" target="_blank" rel="noopener">Google Maps ↗</a><a id="rome" target="_blank" rel="noopener">Rome2Rio ↗</a><a id="train" target="_blank" rel="noopener">Trens i horaris ↗</a></div></div></article>
-  <article class="card"><div class="ico">🛏️</div><div><h3>3. Hotels propers</h3><p>Consulta allotjaments a prop de la fàbrica i comprova el preu total i la disponibilitat per a les dates indicades.</p><div class="links"><a id="hotelsMap" target="_blank" rel="noopener">Hotels a Maps ↗</a><a id="booking" target="_blank" rel="noopener">Cercar a Booking ↗</a></div></div></article>
-  <article class="card"><div class="ico">🍽️</div><div><h3>4. Restaurants per dinar</h3><p>Troba restaurants propers, consulta horaris, ressenyes i possibles menús del dia. Confirma directament els horaris i el menú.</p><div class="links"><a id="lunch" target="_blank" rel="noopener">Restaurants a Maps ↗</a><a id="menu" target="_blank" rel="noopener">Menú del dia ↗</a></div></div></article>
-  <article class="card"><div class="ico">🅿️</div><div><h3>5. Aparcament i accessos</h3><p>Localitza aparcaments a prop del client i comprova l'accés a la zona industrial.</p><div class="links"><a id="parking" target="_blank" rel="noopener">Aparcaments ↗</a><a id="access" target="_blank" rel="noopener">Accessos i indicacions ↗</a></div></div></article>
-  <article class="card"><div class="ico">📅</div><div><h3>6. Agenda de la visita</h3><p>Obre el calendari amb el client i l'adreça per crear l'esdeveniment. Pots afegir-hi el trajecte i les reserves quan les confirmis.</p><div class="links"><a id="calendar" target="_blank" rel="noopener">Crear esdeveniment ↗</a><button class="btn secondary" id="copy" type="button">Copiar resum</button></div></div></article>
- </div>
- <div class="notice"><strong>Important sobre els preus:</strong> aquesta primera versió no extreu ni garanteix tarifes en directe dins de la mateixa pantalla. Obre cerques dels proveïdors perquè puguis veure la informació publicada en aquell moment. Les cerques de trens i hotels poden requerir que seleccionis l'estació, l'horari, l'habitació o les dates exactes al web del proveïdor. No es fa cap reserva automàtica.</div>
-</section>
-<div class="footer">Assistent privat de visites comercials · Prototip inicial sense claus API ni reserves integrades.</div>
+<section class="panel" id="visitPanel"><form id="form"><div class="grid">
+<div class="field"><label for="client">Fàbrica / adreça del client *</label><input id="client" placeholder="Empresa, població o adreça" required></div>
+<div class="field"><label for="origin">Origen</label><input id="origin" value="Badalona, Barcelona"></div>
+<div class="field"><label for="date">Data de la visita *</label><input id="date" type="date" required></div>
+<div class="field"><label for="returnDate">Data de tornada (opcional)</label><input id="returnDate" type="date"></div>
+<div class="field"><label for="nights">Nits d'hotel</label><select id="nights"><option value="0">Cap</option><option value="1" selected>1 nit</option><option value="2">2 nits</option><option value="3">3 nits</option><option value="4">4 nits</option><option value="5">5 nits</option></select></div>
+<div class="field"><label for="travelers">Viatgers</label><select id="travelers"><option value="1">1 persona</option><option value="2">2 persones</option><option value="3">3 persones</option><option value="4">4 persones</option></select></div>
+<div class="field"><label for="transport">Transport preferit</label><select id="transport"><option value="all">Comparar opcions</option><option value="car">Cotxe</option><option value="train">Tren</option><option value="flight">Avió</option></select></div>\n<div class="field"><label for="flightDestination">Destinació per a la cerca de vols</label><select id="flightDestination"><option value="">Selecciona si vols cercar vols</option><option value="zaragoza">Aldelís / PLAZA — Saragossa (ZAZ)</option><option value="torrijos">Campofrío / Navidul — Torrijos (via Madrid, MAD)</option><option value="ubago">Ahumados Ubago — La Línea (via Màlaga, AGP)</option></select></div>
+<div class="field"><label for="fuel">Consum cotxe (L/100 km)</label><input id="fuel" type="number" min="1" max="30" step=".1" value="6.5"></div>
+<div class="field"><label for="fuelPrice">Combustible (€/L)</label><input id="fuelPrice" type="number" min="0" max="5" step=".01" value="1.65"></div>
+</div><div class="actions"><button class="btn primary" type="submit">🔎 Preparar la visita</button><button class="btn secondary" type="button" id="clear">Netejar</button></div></form></section>
+<nav class="tabs"><button class="btn tab active" id="tabVisit">Preparar visita</button><button class="btn tab" id="tabSettings">⚙️ Configurar motors de cerca</button></nav>
+<section class="panel hidden" id="settings"><h2>Configuració dels motors</h2><p class="small">Edita el nom i la plantilla d'URL de cada cercador. Variables: <code>{{client}}</code>, <code>{{origin}}</code>, <code>{{date}}</code>,, <code>{{checkin}}</code>, <code>{{checkout}}</code>, <code>{{travelers}}</code>. Els canvis es desen en aquest navegador.</p>
+<div class="field"><label for="category">Apartat</label><select id="category"><option value="factory">Fàbrica</option><option value="trains">Trens</option><option value="flights">Avions</option><option value="car">Cotxe</option><option value="hotels">Hotels</option><option value="restaurants">Restaurants</option><option value="parking">Aparcament</option><option value="agenda">Agenda</option><option value="weather">Temps</option></select></div><div id="editor"></div>
+<div class="actions"><button class="btn primary" id="save">Desar configuració</button><button class="btn secondary" id="add">+ Afegir motor</button><button class="btn secondary" id="reset">Restaurar valors inicials</button></div><p id="message" class="small"></p></section>
+<section id="results" class="hidden"><h2 id="subtitle"></h2><div class="cards">
+<article class="card"><div class="ico">🏭</div><div><h3>Fàbrica i ubicació</h3><p>Verifica que sigui la planta correcta.</p><div class="links" data-group="factory"></div></div></article>
+<article class="card"><div class="ico">🚆</div><div><h3>Trens</h3><p>Compara opcions; confirma tarifes i horaris al proveïdor.</p><div class="links" data-group="trains"></div></div></article>
+<article class="card"><div class="ico">✈️</div><div style="width:100%"><h3>Avions</h3><p>Cerca vols i preus en directe des de Barcelona. Cal seleccionar una destinació i una data de tornada.</p><div class="links" data-group="flights"></div><div class="actions"><button class="btn primary" type="button" id="searchFlights">✈️ Cercar vols en directe</button></div><div id="flightStatus" class="weather" aria-live="polite">Prepara una visita i selecciona una destinació de vols per començar.</div><div id="flightResults"></div></div></article>
+<article class="card"><div class="ico">🚗</div><div><h3>Cotxe i costos</h3><p>Consulta distància, temps i peatges. Introdueix els km d'anada per estimar el combustible.</p><div class="links" data-group="car"></div><div id="carEstimate" class="weather"></div></div></article>
+<article class="card"><div class="ico">🛏️</div><div><h3>Hotels</h3><p>Consulta disponibilitat i preus per a les dates.</p><div class="links" data-group="hotels"></div></div></article>
+<article class="card"><div class="ico">🌦️</div><div><h3>Previsió del temps</h3><div id="weatherResult" class="weather">Es carregarà en preparar la visita.</div><div class="links" data-group="weather"></div></div></article>
+<article class="card"><div class="ico">🍽️</div><div><h3>Restaurants</h3><p>Opcions a prop de la fàbrica.</p><div class="links" data-group="restaurants"></div><div class="links" data-group="parking"></div></div></article>
+<article class="card"><div class="ico">📅</div><div><h3>Agenda</h3><p>Prepara un esdeveniment amb les dades de la visita.</p><div class="links" data-group="agenda"></div><button class="btn secondary" id="copy">Copiar resum</button></div></article>
+</div><div class="notice"><b>Important:</b> la web prepara enllaços, però no fa reserves ni garanteix preus en directe. Alguns proveïdors poden ignorar paràmetres de l'URL o demanar que tornis a introduir camps. La previsió del temps és orientativa i depèn de la localització trobada.</div></section>
 </main>
 <script>
 const $=id=>document.getElementById(id);
-const enc=s=>encodeURIComponent((s||'').trim());
+const defaults={
+factory:[{name:'Google Maps — fàbrica',url:'https://www.google.com/maps/search/?api=1&query={{client}}'},{name:'Google — web oficial',url:'https://www.google.com/search?q={{client}}+fàbrica+adreça+oficial'}],
+trains:[{name:'Trainline — comparador',url:'https://www.thetrainline.com/book/results?origin={{origin}}&destination={{client}}&outwardDate={{date}}&adults={{travelers}}'},{name:'Renfe',url:'https://www.renfe.com/es/es'},{name:'OUIGO',url:'https://www.ouigo.com/es/'},{name:'iryo',url:'https://iryo.eu/'}],
+flights:[{name:'Google Flights',url:'https://www.google.com/travel/flights?q=Flights%20from%20{{origin}}%20to%20{{client}}%20on%20{{date}}%20for%20{{travelers}}%20adult'}],
+car:[{name:'ViaMichelin — ruta i costos',url:'https://www.viamichelin.es/routes/results/{{origin}}/{{client}}'},{name:'Google Maps — ruta amb cotxe',url:'https://www.google.com/maps/dir/?api=1&origin={{origin}}&destination={{client}}&travelmode=driving'}],
+hotels:[{name:'Booking — hotels',url:'https://www.booking.com/searchresults.html?ss={{client}}&checkin={{checkin}}&checkout={{checkout}}&group_adults={{travelers}}&no_rooms=1'}],
+restaurants:[{name:'Restaurants a Google Maps',url:'https://www.google.com/maps/search/?api=1&query=restaurants+near+{{client}}'},{name:'Menú del dia',url:'https://www.google.com/search?q=menú+del+dia+restaurant+{{client}}'}],
+parking:[{name:'Aparcament a prop',url:'https://www.google.com/maps/search/?api=1&query=parking+near+{{client}}'}],
+agenda:[{name:'Crear esdeveniment a Google Calendar',url:'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Visita%20comercial%3A%20{{client}}&details=Origen%3A%20{{origin}}&dates={{start}}%2F{{end}}'}],
+weather:[{name:'Google Weather',url:'https://www.google.com/search?q=temps+{{client}}+{{date}}'}]};
+let engines;try{engines=JSON.parse(localStorage.getItem('visitEnginesV3'))||structuredClone(defaults)}catch(e){engines=JSON.parse(JSON.stringify(defaults))}
+const fmt=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+function values(){let date=$('date').value,n=+$('nights').value,ci=date,co='';if(date){let d=new Date(date+'T12:00:00');d.setDate(d.getDate()+Math.max(1,n));co=$('returnDate').value||fmt(d)}return {client:$('client').value.trim(),origin:$('origin').value.trim()||'Badalona, Barcelona',date,checkin:ci,checkout:co,travelers:$('travelers').value,start:date?date.replaceAll('-',''):'',end:date?(()=>{let d=new Date(date+'T12:00:00');d.setDate(d.getDate()+1);return fmt(d).replaceAll('-','')})():''}}
+function build(t,v){return t.replace(/\{\{(client|origin|date|checkin|checkout|travelers|start|end)\}\}/g,(_,k)=>encodeURIComponent(v[k]||''))}
+function render(v){document.querySelectorAll('[data-group]').forEach(box=>{box.innerHTML='';(engines[box.dataset.group]||[]).forEach(e=>{if(!e.name||!e.url)return;let a=document.createElement('a');a.href=build(e.url,v);a.target='_blank';a.rel='noopener';a.textContent=e.name+' ↗';box.append(a)})})}
+function weatherText(c){if(c===0)return'cel serè';if([1,2].includes(c))return'parcialment ennuvolat';if(c===3)return'ennuvolat';if([45,48].includes(c))return'boira';if(c>=51&&c<=67||c>=80&&c<=82)return'plugim o pluja';if(c>=71&&c<=77||c>=85&&c<=86)return'neu';if(c>=95)return'tempesta';return'temps variable'}
+async function weather(client,date){let b=$('weatherResult');b.textContent='Consultant previsió…';try{let g=await fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(client)+'&count=1&language=ca&format=json');let gj=await g.json(),p=gj.results?.[0];if(!p){b.textContent='No s’ha trobat la població. Prova d’afegir el municipi a l’adreça del client.';return}let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude='+p.latitude+'&longitude='+p.longitude+'&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max&timezone=auto&forecast_days=7'),j=await r.json(),i=j.daily.time.indexOf(date);if(i<0){b.textContent='Aquesta data és fora de la previsió detallada disponible. Consulta Google Weather per a una estimació a més llarg termini.';return}b.textContent=p.name+(p.admin1?', '+p.admin1:'')+' · '+weatherText(j.daily.weather_code[i])+'. Màx. '+j.daily.temperature_2m_max[i]+'°C, mín. '+j.daily.temperature_2m_min[i]+'°C; probabilitat màxima de pluja '+(j.daily.precipitation_probability_max[i]??'—')+'%; vent fins a '+(j.daily.wind_speed_10m_max[i]??'—')+' km/h.'}catch(e){b.textContent='No s’ha pogut carregar el temps. Comprova la connexió i utilitza el cercador alternatiu.'}}
 let current={};
-function setLink(id,url){$(id).href=url;}
-function makeSearch(){
- const client=$('client').value.trim(); if(!client){$('client').focus();alert('Introdueix el nom de la fàbrica o l’adreça del client.');return;}
- const origin=$('origin').value.trim()||'Badalona, Barcelona'; const date=$('date').value; const time=$('time').value||'10:00'; const nights=Number($('nights').value); const transport=$('transport').value;
- const destination=client; const q=enc(destination), from=enc(origin);
- const d=date?new Date(date+'T12:00:00'):null;
- let checkin='',checkout='';
- if(d){checkin=date;const end=new Date(d);end.setDate(end.getDate()+Math.max(1,nights));checkout=end.toISOString().slice(0,10);}
- setLink('factoryMap','https://www.google.com/maps/search/?api=1&query='+q);
- setLink('factoryWeb','https://www.google.com/search?q='+enc(destination+' fàbrica adreça oficial'));
- setLink('directions','https://www.google.com/maps/dir/?api=1&origin='+from+'&destination='+q+(transport==='car'?'&travelmode=driving':transport==='public'?'&travelmode=transit':''));
- setLink('rome','https://www.rome2rio.com/map/'+from+'/'+q);
- setLink('train','https://www.google.com/search?q='+enc('horaris preus tren '+origin+' '+destination+(date?' '+date:'')));
- setLink('hotelsMap','https://www.google.com/maps/search/?api=1&query='+enc('hotels near '+destination));
- setLink('booking','https://www.booking.com/searchresults.html?ss='+q+(checkin?'&checkin='+checkin+'&checkout='+checkout:''));
- setLink('lunch','https://www.google.com/maps/search/?api=1&query='+enc('restaurants near '+destination));
- setLink('menu','https://www.google.com/search?q='+enc('menú del día restaurante '+destination));
- setLink('parking','https://www.google.com/maps/search/?api=1&query='+enc('parking near '+destination));
- setLink('access','https://www.google.com/maps/dir/?api=1&destination='+q);
- const start=date?date+'T'+time:'';
- const endDate=d?new Date(d.getTime()+60*60*1000):null;
- const end=endDate?endDate.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z'):'';
- const startFmt=d?new Date(date+'T'+time+':00').toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z'):'';
- const title='Visita comercial: '+destination;
- const details='Client: '+destination+'\nOrigen: '+origin+'\nGoogle Maps: https://www.google.com/maps/search/?api=1&query='+q;
- setLink('calendar','https://calendar.google.com/calendar/render?action=TEMPLATE&text='+enc(title)+(startFmt&&end?'&dates='+startFmt+'/'+end:'')+'&details='+enc(details));
- current={client,origin,date,time,nights,transport};
- $('subtitle').textContent=destination+' · Sortida des de '+origin+(date?' · Visita el '+date:'');
- $('summary').textContent='Abans de reservar, verifica que la fàbrica seleccionada sigui la correcta. Després obre les opcions de transport i allotjament amb les dates concretes.';
- $('summary').classList.add('show'); $('results').classList.add('show'); $('results').scrollIntoView({behavior:'smooth',block:'start'});
+$('form').addEventListener('submit',e=>{e.preventDefault();let v=values();if(!v.client||!v.date)return;current=v;render(v);$('subtitle').textContent=v.client+' · sortida des de '+v.origin+' · '+v.date;$('results').classList.remove('hidden');$('carEstimate').innerHTML='';let km=prompt('Si coneixes els km d’anada per carretera, introdueix-los per estimar el combustible. Cancel·la o deixa buit si no ho saps.');if(km&&Number(km)>0){let total=Number(km)*2,litres=total*Number($('fuel').value||6.5)/100,cost=litres*Number($('fuelPrice').value||1.65);$('carEstimate').textContent='Anada i tornada: '+total.toFixed(0)+' km · '+litres.toFixed(1)+' L · combustible aproximat '+cost.toLocaleString('ca-ES',{style:'currency',currency:'EUR'})+'. No inclou peatges ni aparcament.'}else $('carEstimate').textContent='El cost de combustible es pot estimar si introdueixes els quilòmetres.';weather(v.client,v.date);$('results').scrollIntoView({behavior:'smooth'})});
+
+const FLIGHTS_API='https://agencia-viatges-biz.andreubdn.workers.dev/';
+function flightDateRange(v){
+  const outbound=v.date;
+  let returning=$('returnDate').value;
+  if(!returning){
+    const nights=Math.max(1,Number($('nights').value)||1);
+    const d=new Date(outbound+'T12:00:00');d.setDate(d.getDate()+nights);
+    returning=fmt(d);
+  }
+  return {outbound,returning};
 }
-$('search').addEventListener('click',makeSearch);
-$('client').addEventListener('keydown',e=>{if(e.key==='Enter')makeSearch()});
-$('clear').addEventListener('click',()=>{$('client').value='';$('date').value='';$('time').value='10:00';$('nights').value='1';$('transport').value='all';$('results').classList.remove('show');$('summary').classList.remove('show');$('client').focus()});
-$('copy').addEventListener('click',async()=>{if(!current.client)return;const text='Visita comercial\nClient: '+current.client+'\nOrigen: '+current.origin+'\nData: '+(current.date||'Per determinar')+'\nHora reunió: '+current.time+'\nNits d’hotel: '+current.nights+'\nTransport: '+current.transport+'\n\nConfirmar fàbrica, horaris i preus abans de reservar.';try{await navigator.clipboard.writeText(text);$('copy').textContent='Copiat ✓';setTimeout(()=>$('copy').textContent='Copiar resum',1800)}catch(e){prompt('Copia aquest resum:',text)}});
-// Default date: tomorrow, using local date.
-const tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);$('date').value=tomorrow.getFullYear()+'-'+String(tomorrow.getMonth()+1).padStart(2,'0')+'-'+String(tomorrow.getDate()).padStart(2,'0');
-</script>
-</body></html>
+function safeText(value){return value===undefined||value===null?'':String(value)}
+function formatFlightPrice(price){
+  if(price===undefined||price===null||price==='')return 'Preu no indicat';
+  return typeof price==='number'?price.toLocaleString('ca-ES',{style:'currency',currency:'EUR'}):String(price);
+}
+function renderFlightList(items){
+  if(!Array.isArray(items)||!items.length)return '';
+  return items.map((f)=>{
+    const legs=Array.isArray(f.flights)?f.flights:[];
+    const first=legs[0]||{};
+    const last=legs[legs.length-1]||{};
+    const airlines=[...new Set(legs.map(x=>x.airline).filter(Boolean))].join(', ') || safeText(f.airline)||'Companyia no indicada';
+    const departure=first.departure_airport?.time||first.departure_time||'';
+    const arrival=last.arrival_airport?.time||last.arrival_time||'';
+    const stops=legs.length>1?`${legs.length-1} escala(es)`:'Directe o escala no especificada';
+    const duration=legs.reduce((sum,x)=>sum+(Number(x.duration)||0),0);
+    const durationText=duration?`${Math.floor(duration/60)} h ${duration%60} min`:'';
+    const booking=f.booking_token?'https://www.google.com/travel/flights':'';
+    const details=[departure&&arrival?`${departure} → ${arrival}`:'',durationText,stops].filter(Boolean).join(' · ');
+    return `<article class="card" style="margin-top:10px"><div style="width:100%"><h3>${escapeHtml(airlines)}</h3><p>${escapeHtml(details||'Horari no disponible')}</p><p><b>${escapeHtml(formatFlightPrice(f.price))}</b></p>${booking?'<a target="_blank" rel="noopener" href="'+booking+'">Obrir Google Flights per revisar i reservar ↗</a>':''}</div></article>`;
+  }).join('');
+}
+function escapeHtml(value){
+  return safeText(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+$('searchFlights').addEventListener('click',async()=>{
+  const v=values();
+  const destination=$('flightDestination').value;
+  const status=$('flightStatus'),out=$('flightResults');
+  out.innerHTML='';
+  if(!v.date){status.textContent='Indica primer la data de la visita.';return}
+  if(!destination){status.textContent='Selecciona una destinació de vols al formulari de la visita.';return}
+  const {outbound,returning}=flightDateRange(v);
+  if(returning<outbound){status.textContent='La tornada no pot ser anterior a l’anada.';return}
+  status.textContent='Consultant vols i preus…';
+  $('searchFlights').disabled=true;
+  try{
+    const qs=new URLSearchParams({destination,outbound,return:returning});
+    const response=await fetch(FLIGHTS_API+'?'+qs.toString(),{method:'GET',headers:{'Accept':'application/json'}});
+    const data=await response.json();
+    if(!response.ok||data.error)throw new Error(data.error||`Error HTTP ${response.status}`);
+    const best=Array.isArray(data.best_flights)?data.best_flights:[];
+    const other=Array.isArray(data.other_flights)?data.other_flights:[];
+    if(!best.length&&!other.length){
+      status.textContent='La consulta s’ha completat, però l’API no ha retornat vols. Prova més endavant o utilitza Google Flights.';
+      if(data.search_metadata?.google_flights_url){
+        const a=document.createElement('a');a.href=data.search_metadata.google_flights_url;a.target='_blank';a.rel='noopener';a.textContent='Obrir els resultats de Google Flights ↗';out.append(a);
+      }
+      return;
+    }
+    status.textContent=`Resultats per a ${data.destination||destination}. Anada ${outbound} · tornada ${returning}. Preus i disponibilitat poden canviar.`;
+    out.innerHTML='<h3 style="margin-top:14px">Millors opcions</h3>'+renderFlightList(best)+(other.length?'<h3 style="margin-top:14px">Altres opcions</h3>'+renderFlightList(other):'');
+    if(data.search_metadata?.google_flights_url){
+      const a=document.createElement('a');a.href=data.search_metadata.google_flights_url;a.target='_blank';a.rel='noopener';a.textContent='Veure tots els resultats a Google Flights ↗';out.append(a);
+    }
+  }catch(err){
+    status.textContent='No s’han pogut carregar els vols: '+(err?.message||'error desconegut')+'. Comprova el Worker i els registres de Cloudflare. La clau no s’ha d’introduir a la web.';
+  }finally{$('searchFlights').disabled=false}
+});
+
+$('clear').onclick=()=>{$('form').reset();$('origin').value='Badalona, Barcelona';$('results').classList.add('hidden');$('flightResults').innerHTML='';$('flightStatus').textContent='Prepara una visita i selecciona una destinació de vols per començar.'};
+function tab(s){$('settings').classList.toggle('hidden',!s);$('visitPanel').classList.toggle('hidden',s);$('results').classList.add('hidden');$('tabSettings').classList.toggle('active',s);$('tabVisit').classList.toggle('active',!s);if(s)editor()}
+$('tabVisit').onclick=()=>tab(false);$('tabSettings').onclick=()=>tab(true);
+function editor(){let cat=$('category').value,host=$('editor');host.innerHTML='';(engines[cat]||(engines[cat]=[])).forEach((e,i)=>{let row=document.createElement('div');row.className='engine-row';let name=document.createElement('input');name.value=e.name;name.placeholder='Nom';let url=document.createElement('input');url.value=e.url;url.placeholder='URL amb {{client}} i altres variables';let del=document.createElement('button');del.className='btn secondary';del.textContent='Eliminar';del.onclick=()=>{engines[cat].splice(i,1);editor()};name.oninput=()=>engines[cat][i].name=name.value;url.oninput=()=>engines[cat][i].url=url.value;row.append(name,url,del);host.append(row)});if(!engines[cat].length)host.textContent='No hi ha motors. Prem Afegir motor.'}
+$('category').onchange=editor;$('add').onclick=()=>{let c=$('category').value;(engines[c]||(engines[c]=[])).push({name:'Nou motor',url:'https://www.google.com/search?q={{client}}'});editor()};$('save').onclick=()=>{try{localStorage.setItem('visitEnginesV3',JSON.stringify(engines));$('message').textContent='Configuració desada en aquest navegador.'}catch(e){$('message').textContent='No s’ha pogut desar la configuració.'}};$('reset').onclick=()=>{if(confirm('Restaurar els motors inicials?')){engines=JSON.parse(JSON.stringify(defaults));editor();$('message').textContent='Motors inicials restaurats. Desa per conservar els canvis.'}};
+$('copy').onclick=async()=>{let t='Visita comercial\nClient: '+current.client+'\nOrigen: '+current.origin+'\nData: '+current.date+'\nViatgers: '+current.travelers;try{await navigator.clipboard.writeText(t);alert('Resum copiat')}catch(e){prompt('Copia el resum',t)}};
+let d=new Date();d.setDate(d.getDate()+1);$('date').value=fmt(d);$('returnDate').value='';editor();
+</script></body></html>
